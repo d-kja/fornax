@@ -1,2 +1,6 @@
 **/.env
 **/target
+**/.tamagui
+**/node_modules
+
+mobile/.expo

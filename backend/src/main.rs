@@ -5,7 +5,7 @@ mod http;
 extern crate rocket;
 
 use dotenv::dotenv;
-use http::{available_channels, launch_globo};
+use http::{available_channels, launch_globo, run_cmd};
 
 #[launch]
 fn rocket() -> _ {
@@ -14,4 +14,5 @@ fn rocket() -> _ {
     rocket::build()
         .mount("/api", routes![available_channels])
         .mount("/api", routes![launch_globo])
+        .mount("/api", routes![run_cmd])
 }

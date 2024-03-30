@@ -7,6 +7,9 @@ edition = "2021"
 
 [dependencies]
 rocket = "0.5.0"
-lg-webos-client = { path = "./pkg/rs-webos" }
+rs_webos = { path = "./pkg/rs-webos" }
 dotenv = "0.15.0"
 serde_json = "1.0.91"
+tungstenite = { version = "0.21.0", features = ["native-tls"] }
+tokio-tungstenite = "0.21.0"
+url = "2.2.2"

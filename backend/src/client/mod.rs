@@ -1,8 +1,8 @@
 use std::env;
 
-use lg_webos_client::client::*;
-use lg_webos_client::command::Command;
-
+use rs_webos::client::*;
+use rs_webos::command::Command;
+use serde_json::Value;
 pub struct Client {
     url: String,
     key: Option<String>,
@@ -19,7 +19,7 @@ impl Client {
         Self { url, key }
     }
 
-    pub async fn run(&self, command: Command) {
+    pub async fn run(&self, command: Command) -> Option<Value> {
         let config = WebOsClientConfig::new(&self.url, self.key.clone());
         let client = WebosClient::new(config)
             .await
@@ -30,6 +30,11 @@ impl Client {
             .await
             .expect("Unable to send the command");
 
-        println!("{:#?}", resp.payload);
+        println!(
+            "={:-^45}=\n\r\n\r{:#?}\n\r\n\r={:-^45}=\n\r",
+            "=RESPONSE=", resp.payload, "=END="
+        );
+
+        resp.payload
     }
 }
